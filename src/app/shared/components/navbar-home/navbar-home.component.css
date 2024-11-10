@@ -1,0 +1,49 @@
+.navbar {
+    background-color: #343a40; /* Fondo oscuro */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    color: #f8f9fa; /* Texto en blanco */
+    font-size: 1.5rem;
+    letter-spacing: 0.05rem;
+  }
+  
+  .nav-link {
+    font-size: 1.1rem;
+    color: #f8f9fa;
+    margin-right: 1rem;
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  /* Botón de Iniciar Sesión con borde blanco para buen contraste */
+  .btn-outline-light {
+    border-color: #ffffff; /* Borde blanco */
+    color: #ffffff; /* Texto blanco */
+  }
+  
+  .btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo blanco suave al hacer hover */
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+  
+  /* Botón de Registrarse (CTA principal) con verde bajo */
+  .btn-primary {
+    background-color: #28a745; /* Verde bajo */
+    border: none;
+    color: #f8f9fa; /* Texto blanco para contraste */
+  }
+  
+  .btn-primary:hover {
+    background-color: #218838; /* Verde más oscuro al hacer hover */
+  }
+  
+  .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.1); /* Toggler con borde claro */
+  }
+  
+  .navbar-toggler-icon {
+    color: white;
+  }
