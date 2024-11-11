@@ -13,7 +13,7 @@ export class StorageService{
         localStorage.setItem(this.authKey, JSON.stringify(data))
     }
 
-    getAtuhData(): AuthResponse | null {
+    getAuthData(): AuthResponse | null {
         const data = localStorage.getItem(this.authKey);
         return data ? JSON.parse(data) as AuthResponse : null;
     }

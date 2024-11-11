@@ -52,7 +52,7 @@ export class RegisterComponent {
       this.authService.register(userData).subscribe({
         next: () => {
           this.showSnackBar('Usuario creado correctamente');
-          this.router.navigate(['/auth/login']);
+          this.router.navigate(['/auth/create-profile']);
         },
         error: (error) =>{
           this.showSnackBar(error.error.message);

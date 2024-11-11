@@ -11,13 +11,23 @@
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link btn btn-outline-light px-3 me-2" routerLink="/auth/login" routerLinkActive="active">Iniciar Sesión</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link btn btn-primary text-white px-3" routerLink="/auth/register" routerLinkActive="active">Registrarse</a>
-          </li>
+          @if(!isAuthenticated){
+            <li class="nav-item">
+              <a class="nav-link btn btn-outline-light px-3 me-2" routerLink="/auth/login" routerLinkActive="active">Iniciar Sesión</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn btn-primary text-white px-3" routerLink="/auth/register" routerLinkActive="active">Registrarse</a>
+            </li>
+          }
+          @else{
+            <li class="nav-item">
+              <a class="nav-link" href="./customer/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" (click)="logout()">Cerrar Sesión</a>
+            </li>
+          }
         </ul>
       </div>
     </div>
-  </nav>
+</nav>
