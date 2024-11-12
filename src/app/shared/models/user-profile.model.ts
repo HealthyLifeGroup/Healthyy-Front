@@ -1,8 +1,9 @@
 export interface UserProfile{
-    userName: string,
-    height: number,
+    name: string;
+    height: number;
     weight: number;
     age: number;
     gender: string;
-    healthConditions?: string;
+    healthConditions: string;
+    
 }

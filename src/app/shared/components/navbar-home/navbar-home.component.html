@@ -5,13 +5,13 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarHome">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/" routerLinkActive="active">Inicio</a>
-          </li>
-        </ul>
         <ul class="navbar-nav ms-auto">
           @if(!isAuthenticated){
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/" routerLinkActive="active">Inicio</a>
+              </li>
+            </ul>
             <li class="nav-item">
               <a class="nav-link btn btn-outline-light px-3 me-2" routerLink="/auth/login" routerLinkActive="active">Iniciar Sesión</a>
             </li>
@@ -20,8 +20,16 @@
             </li>
           }
           @else{
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/customer" routerLinkActive="active">Inicio</a>
+              </li>
+            </ul>
             <li class="nav-item">
-              <a class="nav-link" href="./customer/profile">Profile</a>
+              <a class="nav-link" href="./customer/profile" routerLinkActive="active">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./customer/plan" routerLinkActive="active">Planes</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#" (click)="logout()">Cerrar Sesión</a>

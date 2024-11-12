@@ -2,6 +2,8 @@ import { Routes } from '@angular/router'
 import { CustomerLayoutComponent } from './customer-layout/customer-layout.component'
 import { CreateProfileComponent } from './create-profile/create-profile.component'
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component'
+import { CreatePlanComponent } from './create-plan/create-plan.component'
+import { CustomerPlanComponent } from './customer-plan/customer-plan.component'
 
 export const customerRoutes: Routes = [
     {
@@ -9,7 +11,9 @@ export const customerRoutes: Routes = [
         component: CustomerLayoutComponent,
         children: [
             {path: 'profile', component:CustomerProfileComponent},
-            {path: 'create-profile', component:CreateProfileComponent}
+            {path: 'create-profile', component:CreateProfileComponent},
+            {path: 'plan', component:CustomerPlanComponent},
+            {path: 'plan/create-plan', component: CreatePlanComponent }
         ]
     }
 ]

@@ -1,0 +1,20 @@
+.profile-container {
+    padding: 20px;
+  }
+  
+  .profile-details {
+    margin-top: 20px;
+  }
+  
+  .profile-item {
+    margin-bottom: 10px;
+  }
+  
+  .profile-item strong {
+    font-weight: bold;
+  }
+  
+  button {
+    margin-top: 20px;
+  }
+  

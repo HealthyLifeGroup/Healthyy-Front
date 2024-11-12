@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
+import { NotExpr } from '@angular/compiler';
 
 @Component({
   selector: 'app-create-profile',
@@ -41,8 +42,7 @@ export class CreateProfileComponent {
   private fb = inject(FormBuilder);
   private snackBar = inject(MatSnackBar);
   private router = inject(Router);
-  private customer = inject(UserProfileService);
-
+  private profileService = inject(UserProfileService);
   constructor() {
     this.profileForm = this.fb.group({
       userName: ['', [Validators.required]],
@@ -59,7 +59,19 @@ export class CreateProfileComponent {
   }
 
   onSubmit() {
-    
+    if(this.profileForm.invalid){
+      return;
+    }
+
+    const profileData = this.profileForm.value;
+    this.profileService.createProfile(profileData).subscribe({
+      next: () => {
+        this.router.navigate(['/customer/profile']);
+      },
+      error: (err) => {
+        console.error('Error al crear el perfil', err);
+      }
+    });
   }
   showSnackBar(message: string) {
     this.snackBar.open(message, 'Cerrar', {

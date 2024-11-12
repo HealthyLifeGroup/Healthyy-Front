@@ -1,1 +1,32 @@
-<p>customer-profile works!</p>
+<div *ngIf="profileExists && profile; else noProfile">
+  <div class="profile-container">
+    <h2>Perfil de {{ profile.name }}</h2>
+    <div class="profile-details">
+      <div class="profile-item">
+        <strong>Nombre de usuario:</strong> {{ profile.name }}
+      </div>
+      <div class="profile-item">
+        <strong>Altura:</strong> {{ profile.height }} cm
+      </div>
+      <div class="profile-item">
+        <strong>Peso:</strong> {{ profile.weight }} kg
+      </div>
+      <div class="profile-item">
+        <strong>Edad:</strong> {{ profile.age }} años
+      </div>
+      <div class="profile-item">
+        <strong>Género:</strong> {{ profile.gender }}
+      </div>
+      <div class="profile-item">
+        <strong>Condiciones de salud:</strong>
+        <p>{{ profile.healthConditions }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noProfile>
+  <div>
+    <p>No se ha encontrado un perfil. Por favor, crea uno.</p>
+  </div>
+</ng-template>
