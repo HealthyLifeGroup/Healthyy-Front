@@ -17,6 +17,7 @@ export class CreatePlanComponent {
   private planService = inject(UserPlanService);
 
   planForm: FormGroup;
+  minDate: string;  
 
   constructor(){
     this.planForm = this.fb.group({
@@ -24,6 +25,8 @@ export class CreatePlanComponent {
       description: ['', Validators.required],
       endDate: ['', Validators.required]
     })
+    const currentDate = new Date();
+    this.minDate = currentDate.toISOString().slice(0, 16); 
   }
   controlHasError(control: string, error: string) {
     return this.planForm.controls[control].hasError(error);

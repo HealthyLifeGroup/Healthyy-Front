@@ -1,3 +1,33 @@
-<div class="text-center mt-4">
-    <button class="btn btn-success" (click)="onCreatePlan()">Crear Nuevo Plan</button>
-</div>
+<div *ngIf="plan" class="container mt-5">
+    <h2>Detalles del Plan</h2>
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ plan.planName }}</h5>
+            <p><strong>Descripción:</strong> {{ plan.description }}</p>
+            <p><strong>Fecha de Inicio:</strong> {{ plan.startDate | date: 'short' }}</p>
+            <p><strong>Fecha de Finalización:</strong> {{ plan.endDate | date: 'short' }}</p>
+            <p><strong>Estado:</strong> {{ plan.planStatus }}</p>
+  
+            <div *ngIf="plan.goals && plan.goals.length > 0">
+              <h6>Metas Asociadas:</h6>
+              <ul>
+                <li *ngFor="let goal of plan.goals">
+                  <p><strong>{{ goal.habitName }}</strong></p>
+                  <p>Tipo de habito: {{ goal.habitTypeName }}</p>
+                  <p>Valor Objetivo: {{ goal.targetValue }}</p>
+                  <p>Valor Actual: {{ goal.currentValue }}</p>
+                </li>
+              </ul>
+            </div>
+  
+            <div *ngIf="plan.goals?.length === 0">
+              <p>No hay metas asociadas a este plan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,20 +1,29 @@
-.profile-container {
-    padding: 20px;
-  }
-  
-  .profile-details {
-    margin-top: 20px;
-  }
-  
-  .profile-item {
-    margin-bottom: 10px;
-  }
-  
-  .profile-item strong {
-    font-weight: bold;
-  }
-  
-  button {
-    margin-top: 20px;
-  }
-  
+.profile-card {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.profile-details {
+  font-size: 1.1rem;
+}
+
+.profile-item {
+  margin-bottom: 1rem;
+}
+
+.profile-item i {
+  width: 25px;
+  color: #007bff;
+}
+
+.card-footer {
+  background-color: #f8f9fa;
+}
+
+.btn {
+  margin-right: 10px;
+}
+
+.alert {
+  max-width: 500px;
+  margin: 0 auto;
+}

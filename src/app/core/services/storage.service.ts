@@ -7,6 +7,7 @@ import { AuthResponse } from "../../shared/models/auth-response.model";
 
 export class StorageService{
     private authKey = 'healthy_auth'
+    private planId: number | null = null;
     constructor() {}
 
     setAuthData(data: AuthResponse): void{
@@ -21,4 +22,15 @@ export class StorageService{
     clearAuthData(): void{
         localStorage.removeItem(this.authKey);
     }
+    setPlanId(id: number) {
+        this.planId = id;
+      }
+    
+      getPlanId(): number | null {
+        return this.planId;
+      }
+    
+      clearPlanId() {
+        this.planId = null;
+      }
 }
