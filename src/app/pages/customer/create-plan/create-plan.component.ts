@@ -40,7 +40,7 @@ export class CreatePlanComponent {
     const planData = this.planForm.value;
     this.planService.createPlan(planData).subscribe({
       next: () =>{
-        this.router.navigate(['customer/plan']);
+        this.router.navigate(['customer/home']);
       },
       error: (err) => {
         console.error('Error al crear plan', err);

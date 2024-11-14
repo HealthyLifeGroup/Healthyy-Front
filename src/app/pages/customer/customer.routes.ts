@@ -7,6 +7,7 @@ import { CustomerHomeComponent } from './customer-home/customer-home.component'
 import { CustomerPlanComponent } from './customer-plan/customer-plan.component'
 import { CreateGoalComponent } from './create-goal/create-goal.component'
 import { profileGuard } from '../../core/guards/profile.guard'
+import { profileReverseGuard } from '../../core/guards/profile-reverse.guard'
 
 export const customerRoutes: Routes = [
     {
@@ -14,9 +15,9 @@ export const customerRoutes: Routes = [
         component: CustomerLayoutComponent,
         children: [
             {path: 'profile', component:CustomerProfileComponent},
-            {path: 'create-profile', component:CreateProfileComponent,canActivate: [profileGuard]},
+            {path: 'create-profile', component:CreateProfileComponent, canActivate: [profileGuard]},
             {path: 'plan/create-plan', component: CreatePlanComponent},
-            {path: 'home', component: CustomerHomeComponent},
+            {path: 'home', component: CustomerHomeComponent, canActivate: [profileReverseGuard]},
             {path: 'plan', component: CustomerPlanComponent},
             {path: 'plan/goal', component: CreateGoalComponent}
         ]
