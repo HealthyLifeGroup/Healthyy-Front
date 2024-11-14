@@ -5,6 +5,8 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
 import { CreatePlanComponent } from './create-plan/create-plan.component'
 import { CustomerHomeComponent } from './customer-home/customer-home.component'
 import { CustomerPlanComponent } from './customer-plan/customer-plan.component'
+import { CreateGoalComponent } from './create-goal/create-goal.component'
+import { profileGuard } from '../../core/guards/profile.guard'
 
 export const customerRoutes: Routes = [
     {
@@ -12,10 +14,11 @@ export const customerRoutes: Routes = [
         component: CustomerLayoutComponent,
         children: [
             {path: 'profile', component:CustomerProfileComponent},
-            {path: 'create-profile', component:CreateProfileComponent},
-            {path: 'plan/create-plan', component: CreatePlanComponent },
+            {path: 'create-profile', component:CreateProfileComponent,canActivate: [profileGuard]},
+            {path: 'plan/create-plan', component: CreatePlanComponent},
             {path: 'home', component: CustomerHomeComponent},
-            {path: 'plan', component: CustomerPlanComponent}
+            {path: 'plan', component: CustomerPlanComponent},
+            {path: 'plan/goal', component: CreateGoalComponent}
         ]
     }
 ]

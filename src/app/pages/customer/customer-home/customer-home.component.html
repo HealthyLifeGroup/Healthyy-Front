@@ -1,48 +1,45 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-12">
-      <strong class="welcome-message"> Bienvenido, </strong>{{profile?.name}}
-    </div>
-  </div>
+<div class="customer-home-container">
+  <header class="welcome-header">
+    <h1 class="welcome-message">Bienvenido, <span class="user-name">{{profile.name}}</span></h1>
+  </header>
 
-  <div class="row mt-4">
-    <div class="col-12 d-flex justify-content-between align-items-center">
-      <h2>Tus Planes Activos</h2>
-      <button class="btn btn-primary" (click)="createNewPlan()">Crear Nuevo Plan</button>
+  <section class="plans-section">
+    <div class="plans-header">
+      <h2>Tus Planes de Salud</h2>
+      <button class="btn-create-plan" (click)="createNewPlan()">
+        <i class="fas fa-leaf"></i> Nuevo Plan Saludable
+      </button>
     </div>
-  </div>
 
-  <div class="row mt-3">
-    <div class="col-md-3 col-sm-6 mb-4" *ngFor="let plan of activePlans">
-      <div class="card plan-card">
-        <div class="card-body">
-          <h5 class="card-title">{{plan.planName}}</h5>
-          <p class="card-text">{{plan.description}}</p>
-          <p class="card-text">{{plan.planStatus}}</p>
-          <a href="#" (click)="goToPlanDetails(plan.planId); $event.preventDefault()" class="btn btn-outline-primary">
-            Ver Detalles
-          </a>
+    <div class="plans-grid">
+      <div class="plan-card" *ngFor="let plan of activePlans">
+        <div class="plan-card-content">
+          <h3 class="plan-title">{{plan.planName}}</h3>
+          <p class="plan-description">{{plan.description}}</p>
+          <span class="plan-status" [ngClass]="{'active': plan.planStatus === 'ACTIVE', 'completed': plan.planStatus === 'COMPLETED', 'abandoned': plan.planStatus === 'ABANDONED'}">
+            {{plan.planStatus | planStatus}}
+          </span>
         </div>
+        <button class="btn-plan-details" (click)="goToPlanDetails(plan.planId)">
+          Ver Detalles
+        </button>
       </div>
     </div>
-  </div>
 
-  <div class="row mt-4">
-    <div class="col-12">
-      <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-          <li class="page-item" [class.disabled]="currentPage === 1">
-            <a class="page-link" href="#" (click)="changePage(currentPage - 1); $event.preventDefault()">Anterior</a>
-          </li>
-          <li class="page-item" *ngFor="let page of pages" [class.active]="page === currentPage">
-            <a class="page-link" href="#" (click)="changePage(page); $event.preventDefault()">{{page}}</a>
-          </li>
-          <li class="page-item" [class.disabled]="currentPage === totalPages">
-            <a class="page-link" href="#" (click)="changePage(currentPage + 1); $event.preventDefault()">Siguiente</a>
-          </li>
-
-        </ul>
-      </nav>
-    </div>
-  </div>
+    <nav class="pagination-nav" *ngIf="totalPages > 1">
+      <button class="btn-nav" [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">
+        <i class="fas fa-chevron-left"></i> Anterior
+      </button>
+      <div class="page-numbers">
+        <button class="btn-page" *ngFor="let page of pages" 
+                [class.active]="page === currentPage"
+                (click)="changePage(page)">
+          {{page}}
+        </button>
+      </div>
+      <button class="btn-nav" [disabled]="currentPage === totalPages" (click)="changePage(currentPage + 1)">
+        Siguiente <i class="fas fa-chevron-right"></i>
+      </button>
+    </nav>
+  </section>
 </div>

@@ -13,7 +13,7 @@ export const authInverseGuard: CanActivateFn = (route, state) => {
     if (userRole === 'ADMIN'){
       router.navigate(['/admin']);
     } else if (userRole === 'USER'){
-      router.navigate(['customer']);
+      router.navigate(['/customer/home']);
     }
 
     return false;

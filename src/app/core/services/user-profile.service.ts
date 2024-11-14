@@ -22,25 +22,14 @@ export class UserProfileService {
       return new Observable(observer => observer.next(false));
     }
 
-    const { username, token } = authData; 
-    
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    const params = new HttpParams().set('username', username);
+    const { username } = authData; 
+        const params = new HttpParams().set('username', username);
 
-    return this.http.get<boolean>(`${this.baseURL}/exists`, { headers, params });
+    return this.http.get<boolean>(`${this.baseURL}/exists`, { params });
   }
 
   createProfile(profileData: CreateProfileRequest): Observable<CreateProfileRequest>{
-
-    const authData = this.storageService.getAuthData();
-    if (!authData) {
-      throw new Error('No se encontró información de autenticación');
-    }
-    
-    const { token } = authData; 
-
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post<CreateProfileRequest>(`${this.baseURL}`, profileData, { headers });
+    return this.http.post<CreateProfileRequest>(`${this.baseURL}`, profileData);
   }
 
   getUserProfile(): Observable<UserProfile>{
@@ -49,9 +38,8 @@ export class UserProfileService {
     if (!authData) {
       throw new Error('No se encontró información de autenticación');
     }
-    const { username, token } = authData; 
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<UserProfile>(`${this.baseURL}/${username}`, { headers });
+    const { username } = authData; 
+    return this.http.get<UserProfile>(`${this.baseURL}/${username}`);
   }
 
 }

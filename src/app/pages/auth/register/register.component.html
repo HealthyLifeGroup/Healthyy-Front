@@ -1,11 +1,9 @@
 <div class="register-container">
-    <!-- Encabezado atractivo -->
     <h2 class="register-header">Crea tu cuenta</h2>
     <p class="register-subtext">Regístrate para acceder a la plataforma</p>
   
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
   
-      <!-- Campo de Nombre -->
       <div class="form-group">
         <mat-form-field appearance="outline" class="form-input">
           <mat-label>Nombre de usuario</mat-label>
@@ -16,7 +14,6 @@
         </mat-form-field>
       </div>
   
-      <!-- Campo de Correo Electrónico -->
       <div class="form-group">
         <mat-form-field appearance="outline" class="form-input">
           <mat-label>Correo Electrónico</mat-label>
@@ -30,7 +27,6 @@
         </mat-form-field>
       </div>
   
-      <!-- Campo de Contraseña -->
       <div class="form-group">
         <mat-form-field appearance="outline" class="form-input">
           <mat-label>Contraseña</mat-label>
@@ -49,7 +45,6 @@
       </button>
     </form>
   
-    <!-- Enlace para iniciar sesión -->
     <p class="login-link">
       ¿Ya tienes una cuenta?
       <a routerLink="/auth/login">Inicia sesión aquí</a>

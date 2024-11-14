@@ -1,20 +1,22 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserProfile } from '../../../shared/models/user-profile.model';
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserPlanService } from '../../../core/services/user-plan.service';
 import { UserProfileService } from '../../../core/services/user-profile.service';
 import { StorageService } from '../../../core/services/storage.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { PlanStatusPipe } from '../../../core/pipes/plan-status.pipe';
 
 @Component({
   selector: 'app-customer-home',
   standalone: true,
-  imports: [NgFor],
+  imports: [PlanStatusPipe, CommonModule],
   templateUrl: './customer-home.component.html',
   styleUrl: './customer-home.component.css'
 })
-export class CustomerHomeComponent implements OnInit{
-  profile: UserProfile | null = null; 
+export class CustomerHomeComponent{
+  profile!: UserProfile; 
   activePlans: any[] = [];
   pages: number[] = [];
   currentPage: number = 1;
@@ -23,6 +25,7 @@ export class CustomerHomeComponent implements OnInit{
   private planService = inject(UserPlanService);
   private profileService = inject(UserProfileService);
   private storageService = inject(StorageService);
+  private snackBar = inject(MatSnackBar);
 
   ngOnInit(): void {
     this.loadActivePlans();
@@ -41,7 +44,7 @@ export class CustomerHomeComponent implements OnInit{
         this.profile = profileData;
       },
       error: (err) => {
-        console.error('Error al obtener el perfil:', err);
+        this.showSnackBar('Error al obtener el perfil');
       }
     });
   }
@@ -66,5 +69,13 @@ export class CustomerHomeComponent implements OnInit{
   goToPlanDetails(planId: number){
     this.storageService.setPlanId(planId);
     this.router.navigate(['/customer/plan']);
+  }
+
+  showSnackBar(message:string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration:3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+    });
   }
 }

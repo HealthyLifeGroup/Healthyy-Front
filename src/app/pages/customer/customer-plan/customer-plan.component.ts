@@ -3,12 +3,14 @@ import { StorageService } from '../../../core/services/storage.service';
 import { UserPlanService } from '../../../core/services/user-plan.service';
 import { UserPlanResponse } from '../../../shared/models/user-plan-response.model';
 import { CommonModule, DatePipe, NgIf } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { GoalStatusPipe } from '../../../core/pipes/goal-status.pipe';
+import { PlanStatusPipe } from '../../../core/pipes/plan-status.pipe';
 
 @Component({
   selector: 'app-customer-plan',
   standalone: true,
-  imports: [CommonModule, RouterModule, DatePipe],
+  imports: [CommonModule, RouterModule, DatePipe, GoalStatusPipe, PlanStatusPipe],
   templateUrl: './customer-plan.component.html',
   styleUrl: './customer-plan.component.css'
 })
@@ -18,6 +20,7 @@ export class CustomerPlanComponent implements OnInit{
   plan: UserPlanResponse | null = null;
   private storageService = inject(StorageService);
   private planService = inject(UserPlanService);
+  private router = inject(Router);
 
   ngOnInit(){
     this.loadPlan();
@@ -37,5 +40,9 @@ export class CustomerPlanComponent implements OnInit{
         }
       );
     }
+  }
+
+  createNewGoal(){
+    this.router.navigate(['customer/plan/goal']);
   }
 }
