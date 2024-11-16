@@ -1,0 +1,29 @@
+<div class="create-goal-container">
+    <h2 class="section-title">Crear Nueva Meta</h2>
+    <form [formGroup]="goalForm" (ngSubmit)="onSubmitGoal()" class="goal-form">
+      <div class="form-group">
+        <label for="targetValue" class="form-label">Valor Objetivo:</label>
+        <input type="number" id="targetValue" formControlName="targetValue" required class="form-input">
+      </div>
+      <div class="form-group">
+        <label for="currentValue" class="form-label">Valor Actual:</label>
+        <input type="number" id="currentValue" formControlName="currentValue" required class="form-input">
+      </div>
+      <div class="form-group">
+        <label for="endDate" class="form-label">Fecha de Finalización:</label>
+        <input type="datetime-local" id="endDate" formControlName="endDate" [min]="minDate" required class="form-input">
+      </div>
+      <div class="form-group">
+        <h3 class="habit-selection-title">Seleccionar Hábito</h3>
+        <div *ngIf="(habits || []).length > 0" class="habit-list">
+          <label *ngFor="let habit of habits" class="habit-option">
+            <input type="radio" formControlName="habitId" [value]="habit.id" required class="habit-radio">
+            <span class="habit-name">{{ habit.name }}</span>
+          </label>
+        </div>
+      </div>
+      <button type="submit" [disabled]="goalForm.invalid" class="submit-button">
+        <i class="fas fa-check-circle"></i> Crear Meta
+      </button>
+    </form>
+  </div>
