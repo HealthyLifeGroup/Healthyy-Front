@@ -14,6 +14,7 @@
       <p><strong>Fecha de Finalización:</strong> {{ plan.endDate | date: 'dd/MM/yyyy HH:mm' }}</p>
       <p><strong>Estado:</strong> <span class="status-badge" [ngClass]="plan.planStatus | lowercase">{{ plan.planStatus | planStatus }}</span></p>
     </div>
+    <button class = "btn-create-goal"(click) ="goToEditPlan()">Editar</button>
   </div>
 
   <div class="goals-section">
@@ -21,10 +22,12 @@
     <div *ngIf="plan.goals && plan.goals.length > 0" class="goals-grid">
       <div *ngFor="let goal of plan.goals" class="goal-card">
         <h4 class="goal-name">{{ goal.habitName }}</h4>
-        <p><strong>Tipo de hábito:</strong> {{ goal.habitTypeName }}</p>
+        <p><strong>Tipo de hábito:</strong> {{ goal.habitTypeName | habitType}}</p>
         <p><strong>Valor Objetivo:</strong> {{ goal.targetValue }}</p>
         <p><strong>Valor Actual:</strong> {{ goal.currentValue }}</p>
         <p><strong>Estado:</strong> <span class="status-badge" [ngClass]="goal.goalStatus | lowercase">{{ goal.goalStatus | goalStatus }}</span></p>
+        <button (click)="editGoal(goal.goalId)">Editar</button>
+        <button (click)="deleteGoal(goal.goalId)">Eliminar</button>
       </div>
     </div>
     <p *ngIf="!plan.goals || plan.goals.length === 0" class="no-goals-message">

@@ -20,32 +20,37 @@ export class AuthService {
 
   constructor() { }
 
-  login(authRequest: AuthRequest) : Observable<AuthResponse> {
+  login(authRequest: AuthRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.baseURL}/login`, authRequest)
-    .pipe(
-      tap(response => this.storageService.setAuthData(response))
-    )
+      .pipe(
+        tap(response => this.storageService.setAuthData(response))
+      )
   }
 
-  register(registerRequest: RegisterRequest): Observable<RegisterResponse>{
+  register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
     return this.http.post<RegisterResponse>(`${this.baseURL}/register`, registerRequest);
   }
 
-   logout(): void{
+  logout(): void {
     this.storageService.clearAuthData();
-   }
-   
-   isAuthenticated(): boolean{
+  }
+
+  isAuthenticated(): boolean {
     return this.storageService.getAuthData() !== null;
-   }
-   getUser(): AuthResponse | null {
+  }
+  getUser(): AuthResponse | null {
     const authData = this.storageService.getAuthData();
     return authData ? authData : null;
-   }
+  }
 
-   getUserRole(): string | null {
+  getUserRole(): string | null {
     const authData = this.storageService.getAuthData();
     return authData ? authData.role : null;
-   }
-
+  }
+  checkToken(token: string): Observable<any>{
+    return this.http.get(`${environment.baseURL}/mail/reset/check/${token}`);
+  }
+  resetPassword(token: string, newPassword: string): Observable<any> {
+    return this.http.post(`${environment.baseURL}/mail/reset/${token}`,  newPassword);
+  }
 }

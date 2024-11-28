@@ -6,11 +6,12 @@ import { Router } from '@angular/router';
 import { UserHabitResponse } from '../../../shared/models/user-habits-response.model';
 import { UserHabitService } from '../../../core/services/user-habit.service';
 import { CommonModule } from '@angular/common';
+import { HabitTypePipe } from '../../../core/pipes/habit-type.pipe';
 
 @Component({
   selector: 'app-create-goal',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, HabitTypePipe],
   templateUrl: './create-goal.component.html',
   styleUrl: './create-goal.component.css'
 })
@@ -24,6 +25,7 @@ export class CreateGoalComponent{
   goalForm: FormGroup;
   habits: UserHabitResponse[] = [];
   planId: number = 0;
+  selectedHabit: string = '';
   minDate: string;
   showHabits: boolean = false;
 
@@ -70,6 +72,9 @@ export class CreateGoalComponent{
 
   toggleHabits() {
     this.showHabits = !this.showHabits;
+  }
+  onHabitChange(habitName: string) {
+    this.selectedHabit = habitName;
   }
 
 }
