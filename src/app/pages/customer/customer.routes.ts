@@ -10,6 +10,7 @@ import { profileGuard } from '../../core/guards/profile.guard'
 import { profileReverseGuard } from '../../core/guards/profile-reverse.guard'
 import { EditPlanComponent } from './edit-plan/edit-plan.component'
 import { EditGoalComponent } from './edit-goal/edit-goal.component'
+import { EditProfileComponent } from './edit-profile/edit-profile.component'
 
 export const customerRoutes: Routes = [
     {
@@ -23,7 +24,8 @@ export const customerRoutes: Routes = [
             {path: 'plan', component: CustomerPlanComponent},
             {path: 'plan/goal', component: CreateGoalComponent},
             {path: 'plan/edit', component: EditPlanComponent},
-            {path: 'plan/goal/edit', component: EditGoalComponent}
+            {path: 'plan/goal/edit', component: EditGoalComponent},
+            {path: 'profile/edit', component:EditProfileComponent}
         ]
     }
 ]
