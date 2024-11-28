@@ -26,8 +26,8 @@
         <p><strong>Valor Objetivo:</strong> {{ goal.targetValue }}</p>
         <p><strong>Valor Actual:</strong> {{ goal.currentValue }}</p>
         <p><strong>Estado:</strong> <span class="status-badge" [ngClass]="goal.goalStatus | lowercase">{{ goal.goalStatus | goalStatus }}</span></p>
-        <button (click)="editGoal(goal.goalId)">Editar</button>
-        <button (click)="deleteGoal(goal.goalId)">Eliminar</button>
+        <button class = "btn-edit-goal" (click)="editGoal(goal.goalId)">Editar</button>
+        <button class = "btn-edit-goal" (click)="deleteGoal(goal.goalId)">Eliminar</button>
       </div>
     </div>
     <p *ngIf="!plan.goals || plan.goals.length === 0" class="no-goals-message">
