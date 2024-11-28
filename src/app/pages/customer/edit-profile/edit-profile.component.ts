@@ -39,7 +39,6 @@ export class EditProfileComponent {
   ngOnInit(){
     this.loadProfile();
   }
-
   onSubmit() {
     if (this.profileForm.invalid) {
       return;
