@@ -1,13 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserProfileService } from '../../../core/services/user-profile.service';
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserProfile } from '../../../shared/models/user-profile.model';
 
 @Component({
   selector: 'app-customer-profile',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, CommonModule],
   templateUrl: './customer-profile.component.html',
   styleUrl: './customer-profile.component.css'
 })
@@ -45,5 +45,9 @@ export class CustomerProfileComponent implements OnInit{
         console.error('Error al obtener el perfil:', err);
       }
     })
+  }
+
+  goToEdit(){
+    this.router.navigate(['/customer/profile/edit']);
   }
 }
