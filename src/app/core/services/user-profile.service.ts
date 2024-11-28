@@ -42,4 +42,8 @@ export class UserProfileService {
     return this.http.get<UserProfile>(`${this.baseURL}/${username}`);
   }
 
+  updateProfile(profileData: CreateProfileRequest): Observable<CreateProfileRequest>{
+    return this.http.put<CreateProfileRequest>(`${this.baseURL}/update`, profileData);
+  }
+
 }
