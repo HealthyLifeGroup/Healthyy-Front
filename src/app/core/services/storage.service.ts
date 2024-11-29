@@ -29,10 +29,19 @@ export class StorageService {
   getPlanId(): number | null {
     return this.planId;
   }
-  setGoalId(id: number) {
-    this.goalId = id;
+  setGoalId(id: number | undefined) {
+    if (id !== undefined && id !== null) {
+      this.goalId = id;
+      localStorage.setItem('goalId', id.toString());
+    } else {
+      console.error('Intento de guardar un goalId inválido:', id);
+    }
   }
-  getGoalId(): number | null{
-    return this.goalId;
+  getGoalId(): number | null {
+    if (this.goalId !== null) {
+      return this.goalId;
+    }
+    const storedId = localStorage.getItem('goalId');
+    return storedId ? parseInt(storedId, 10) : null;
   }
 }
