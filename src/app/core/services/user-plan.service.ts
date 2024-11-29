@@ -15,7 +15,7 @@ export class UserPlanService {
   private baseURL = `${environment.baseURL}/admin/plans`;
   private http = inject(HttpClient);
 
-  createPlan(planData: UserPlanRequest): Observable<any>{
+  createPlan(planData: UserPlanRequest): Observable<any> {
     return this.http.post<UserPlanRequest>(`${this.baseURL}`, planData);
   }
 
@@ -23,10 +23,12 @@ export class UserPlanService {
     const params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString());
-
-        return this.http.get<any>(`${this.baseURL}/page`, { params });  
-    }
-    getPlanById(planId:number) : Observable<UserPlanResponse>{
-      return this.http.get<UserPlanResponse>(`${this.baseURL}/${planId}`);
-    }
+    return this.http.get<any>(`${this.baseURL}/page`, { params });
+  }
+  getPlanById(planId: number): Observable<UserPlanResponse> {
+    return this.http.get<UserPlanResponse>(`${this.baseURL}/${planId}`);
+  }
+  updatePlan(planId: number, planData: UserPlanResponse): Observable<UserPlanResponse>{
+    return this.http.put<UserPlanResponse>(`${this.baseURL}/${planId}`, planData);
+  }
 }
