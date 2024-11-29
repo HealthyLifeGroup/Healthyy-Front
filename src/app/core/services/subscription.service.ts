@@ -17,4 +17,7 @@ export class SubscriptionService {
   createSubscription(subData: SubscriptionRequest){
     return this.http.post<any>(`${this.baseUrl}/subscriptions`, subData);
   }
+  getSubStatus(profileId: number): Observable<boolean>{
+    return this.http.get<boolean>(`${this.baseUrl}/subscriptions/has-active-subscription/${profileId}`);
+  }
 }

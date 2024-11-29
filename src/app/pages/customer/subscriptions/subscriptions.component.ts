@@ -7,12 +7,12 @@ import { UserProfileService } from '../../../core/services/user-profile.service'
 import { SubscriptionRequest } from '../../../shared/models/subscription-request.model';
 import { UserProfile } from '../../../shared/models/user-profile.model';
 import { CheckoutService } from '../../../core/services/checkout.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-subscriptions',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './subscriptions.component.html',
   styleUrl: './subscriptions.component.css'
 })
@@ -23,13 +23,16 @@ export class SubscriptionsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router)
 
+  isSubs: boolean = false;
+
   plans: SubPlanResponse[] = [];
   subData: SubscriptionRequest | null = null;
   profile: UserProfile | null = null;
 
   ngOnInit(): void {
-    this.loadSubs();
-  
+
+    this.alreadySub();
+
     const token = this.route.snapshot.queryParamMap.get('token');
     const payerId = this.route.snapshot.queryParamMap.get('PayerID');
   
@@ -43,6 +46,24 @@ export class SubscriptionsComponent implements OnInit {
     }
   }
 
+  alreadySub(){
+    this.profileService.getUserProfile().subscribe(
+      response=>{
+        this.profile = response;
+        if(this.profile){
+          this.subService.getSubStatus(this.profile.id).subscribe(
+            response => {
+              this.isSubs = response;
+              console.log(response);
+              if(this.isSubs === false){
+                this.loadSubs();
+              }
+            }
+          )
+        }
+      }
+    )
+  }
   loadSubs() {
     this.subService.getSubPlans().subscribe(
       (response) => {
@@ -70,5 +91,9 @@ export class SubscriptionsComponent implements OnInit {
           );
         }
       });
+  }
+
+  navigateToResource(){
+    this.router.navigate(['/customer/resources']);
   }
 }

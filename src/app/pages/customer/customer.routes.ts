@@ -12,6 +12,7 @@ import { EditPlanComponent } from './edit-plan/edit-plan.component'
 import { EditGoalComponent } from './edit-goal/edit-goal.component'
 import { EditProfileComponent } from './edit-profile/edit-profile.component'
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component'
+import { ResourcesComponent } from './resources/resources.component'
 
 export const customerRoutes: Routes = [
     {
@@ -27,7 +28,8 @@ export const customerRoutes: Routes = [
             {path: 'plan/edit', component: EditPlanComponent},
             {path: 'plan/goal/edit', component: EditGoalComponent},
             {path: 'profile/edit', component:EditProfileComponent},
-            {path: 'subscription', component:SubscriptionsComponent}
+            {path: 'subscription', component:SubscriptionsComponent},
+            {path: 'resources', component:ResourcesComponent}
         ]
     }
 ]
